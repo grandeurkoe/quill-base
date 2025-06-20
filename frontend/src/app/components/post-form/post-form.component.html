@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    <h2>Create New Post</h2>
+
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input id="title" formControlName="title" type="text" class="form-control" />
+            <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="text-danger">
+                Title is required and must be under 255 characters.
+            </div>        
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea id="content" formControlName="content" rows="6" class="form-control"></textarea>
+            <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="text-danger">
+                Content is required.
+            </div>        
+        </div>
+
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input id="author" formControlName="author" type="text" class="form-control" />     
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">Submit</button>
+    </form>
+
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

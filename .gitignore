@@ -1,0 +1,33 @@
+# Node.js
+/backend/node_modules/
+backend/.env
+backend/npm-debug.log*
+backend/yarn-error.log
+backend/.DS_Store
+
+# Angular
+/frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+frontend/.env
+frontend/.DS_Store
+
+# System files
+*.log
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Build artifacts
+**/dist/
+**/build/
+**/tmp/
