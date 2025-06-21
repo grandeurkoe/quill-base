@@ -9,8 +9,11 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptor } from 'src/app/interceptor/token.interceptor';
+import { CommentSectionComponent } from './components/comment-section/comment-section.component';
+import { MyPostComponent } from './components/my-post/my-post.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PostDetailComponent,
     PostFormComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CommentSectionComponent,
+    MyPostComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

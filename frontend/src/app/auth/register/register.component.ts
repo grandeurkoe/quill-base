@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  username = '';
   email = '';
   password = '';
   confirmPassword = '';
@@ -25,7 +26,7 @@ export class RegisterComponent {
       return;
     }
 
-    this.auth.register({ email: this.email, password: this.password }).subscribe({
+    this.auth.register({ username:this.username, email: this.email, password: this.password }).subscribe({
       next: () => {
         this.success = 'Registered successfully. Redirecting to login...';
         setTimeout(() => this.router.navigate(['/login']), 1500);

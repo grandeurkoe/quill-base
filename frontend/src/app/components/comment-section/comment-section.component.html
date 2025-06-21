@@ -1,0 +1,45 @@
+<div class="mt-5">
+  <h5 class="fw-bold mb-3">💬 Comments</h5>
+
+  <div *ngIf="loading" class="text-muted">Loading comments...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div *ngIf="comments.length === 0 && !loading" class="text-muted fst-italic">
+    No comments yet. Be the first to comment!
+  </div>
+
+  <div *ngFor="let comment of comments" class="comment-box p-3 mb-3">
+    <p class="mb-1 text-dark">{{ comment.content }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <small class="text-muted">👤 {{ comment.author }} • {{ comment.created_at | date: 'medium' }}</small>
+      <button
+        *ngIf="comment.author === currentUser"
+        (click)="deleteComment(comment.id)"
+        class="btn btn-sm btn-link text-danger"
+        title="Delete comment"
+      >
+        🗑️ Delete
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoggedIn" class="mt-4">
+    <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+      <div class="mb-3">
+        <textarea
+          class="form-control comment-input"
+          formControlName="content"
+          rows="3"
+          placeholder="Add your comment here..."
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">
+        ➕ Post Comment
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="!isLoggedIn" class="text-muted mt-3 fst-italic">
+    Please log in to post a comment.
+  </div>
+</div>

@@ -1,15 +1,54 @@
-<div class="card p-4 mx-auto" style="max-width: 400px;">
-    <h3>Login</h3>
-    <form (ngSubmit) = "login()">
-        <div class="mb-3">
-            <label>Email</label>
-            <input [(ngModel)] = "email" name="email" type="email" class="form-control" required />
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+  <div class="card shadow-sm p-4 w-100" style="max-width: 450px;">
+    <h3 class="mb-4 text-center fw-bold">🔐 Login to Your Account</h3>
+
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="you@example.com"
+          #e="ngModel"
+        />
+        <label for="email">Email address</label>
+        <div class="text-danger small mt-1" *ngIf="e.invalid && e.touched">Valid email is required</div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="6"
+          placeholder="••••••••"
+          #p="ngModel"
+        />
+        <label for="password">Password</label>
+        <div class="text-danger small mt-1" *ngIf="p.invalid && p.touched">
+          Password is required (min 6 characters)
         </div>
-        <div class="mb-3">
-            <label>Password</label>
-            <input [(ngModel)] = "password" name="password" type="password" class="form-control" required />
-        </div>
-        <button class="btn btn-primary w-100" type="submit">Login</button>
-        <div class="text-danger mt-2" *ngIf="error">{{ error }}</div>
+      </div>
+
+      <button
+        class="btn btn-primary w-100"
+        [disabled]="loginForm.invalid"
+        type="submit"
+      >
+        Login
+      </button>
+
+      <div class="alert alert-danger text-center mt-3 py-2" *ngIf="error">{{ error }}</div>
+
+      <div class="mt-3 text-center">
+        <a routerLink="/register" class="text-decoration-none small">Don't have an account? Register</a>
+      </div>
     </form>
+  </div>
 </div>

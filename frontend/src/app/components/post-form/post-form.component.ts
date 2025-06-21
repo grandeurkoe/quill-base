@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -19,14 +20,16 @@ export class PostFormComponent implements OnInit{
     private fb: FormBuilder, 
     private postService: PostService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255)]],
       content: ['', [Validators.required]],
-      author: ['']
     });
   }
+  
+  author = this.auth.getUser()?.username || '';
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');

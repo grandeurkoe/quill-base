@@ -1,31 +1,51 @@
-<div class="container mt-4">
-    <h2>Create New Post</h2>
+<div class="container mt-5" style="max-width: 720px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+      <h3 class="fw-bold mb-4">
+        {{ isEditMode ? '✏️ Edit Post' : '📝 Create New Post' }}
+      </h3>
 
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input id="title" formControlName="title" type="text" class="form-control" />
-            <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="text-danger">
-                Title is required and must be under 255 characters.
-            </div>        
+          <label for="title" class="form-label fw-semibold">Title</label>
+          <input
+            id="title"
+            formControlName="title"
+            type="text"
+            class="form-control"
+            placeholder="e.g. 10 Tips to Improve Writing"
+          />
+          <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="form-text text-danger">
+            Title is required and must be under 255 characters.
+          </div>
         </div>
 
         <div class="mb-3">
-            <label for="content" class="form-label">Content</label>
-            <textarea id="content" formControlName="content" rows="6" class="form-control"></textarea>
-            <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="text-danger">
-                Content is required.
-            </div>        
+          <label for="content" class="form-label fw-semibold">Content</label>
+          <textarea
+            id="content"
+            formControlName="content"
+            rows="8"
+            class="form-control"
+            placeholder="Start your story or share your thoughts..."
+          ></textarea>
+          <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="form-text text-danger">
+            Content is required.
+          </div>
         </div>
 
-        <div class="mb-3">
-            <label for="author" class="form-label">Author</label>
-            <input id="author" formControlName="author" type="text" class="form-control" />     
+        <div class="mb-3 text-muted small">
+          {{ isEditMode ? 'Editing as' : 'Posting as' }} <strong>{{ author }}</strong>
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="postForm.invalid">Submit</button>
-    </form>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="postForm.invalid">
+          {{ isEditMode ? '💾 Save Changes' : '🚀 Publish Post' }}
+        </button>
+      </form>
 
-    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
-    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </div>
+  </div>
 </div>

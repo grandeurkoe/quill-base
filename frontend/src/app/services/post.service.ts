@@ -26,7 +26,7 @@ export class PostService {
     return this.http.get<Post>(`${this.apiUrl}/${id}`);
   }
 
-  createPost(post: Post): Observable<any> {
+  createPost(post: { title: string; content: string}): Observable<any> {
     return this.http.post(this.apiUrl, post);
   }
 
@@ -35,6 +35,11 @@ export class PostService {
   }
 
   deletePost(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
 }

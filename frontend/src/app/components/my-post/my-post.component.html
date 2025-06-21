@@ -1,20 +1,20 @@
 <div class="container mt-5">
-  <h2 class="mb-4 fw-bold display-6 text-primary">📝 Recent Posts</h2>
+  <h2 class="mb-4 fw-bold display-6 text-primary">📚 My Posts</h2>
 
-  <div *ngIf="loading" class="text-muted">Loading...</div>
+  <div *ngIf="loading" class="text-muted">Loading your posts...</div>
   <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
   <div *ngIf="!loading && posts.length === 0" class="text-muted">
-    <p>No blog posts yet.</p>
+    <p>You haven't written any posts yet.</p>
   </div>
 
-  <div class="row g-4" *ngIf="posts.length > 0"> 
+  <div class="row g-4" *ngIf="posts.length > 0">
     <div class="col-md-6" *ngFor="let post of posts">
       <a [routerLink]="['/post', post.id]" class="post-card text-decoration-none text-dark">
         <div class="card h-100 shadow-sm border-0 post-hover-card">
           <div class="card-body">
             <h5 class="card-title mb-2">{{ post.title }}</h5>
-            <p class="card-text text-muted">{{ post.content | slice:0:120 }}...</p>
+            <p class="card-text text-muted">{{ post.content | slice: 0: 120 }}...</p>
           </div>
           <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center small text-muted">
             <span class="author-chip">

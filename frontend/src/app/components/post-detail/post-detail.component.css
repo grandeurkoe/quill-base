@@ -1,0 +1,46 @@
+.post-detail-card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(to top right, #ffffff, #f9fafb);
+}
+
+.post-detail-card h2 {
+  color: #212529;
+  font-size: 1.75rem;
+}
+
+.post-detail-card .text-muted {
+  font-size: 0.9rem;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #343a40;
+  white-space: pre-line;
+}
+
+.btn-outline-primary,
+.btn-outline-danger {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  min-width: auto;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-danger:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.d-flex.gap-2 .btn {
+  border-radius: 0.4rem;
+  font-weight: 500;
+}
+
+a.text-muted:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}

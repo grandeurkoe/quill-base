@@ -1,0 +1,7 @@
+input::placeholder {
+  color: #adb5bd;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
