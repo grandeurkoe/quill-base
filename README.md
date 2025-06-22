@@ -1,4 +1,4 @@
-# 🖋️ QuillBase
+# ✒️ QuillBase
 
 **QuillBase** is a modern blogging system that enables users to publish articles, interact via comments, and manage their content seamlessly. Built using Angular for the frontend and Node.js with Express and MySQL for the backend, it supports user authentication with JWT and role-based access for a clean author experience.
 
@@ -61,6 +61,11 @@ npm install
 In /backend/.env:
 
 ```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=quillbase
 JWT_SECRET=your_super_secret_key
 ```
 ### ▶️ Run the Application
@@ -87,25 +92,33 @@ App will be available at: http://localhost:4200
 quillbase/
 ├── frontend/           # Angular Frontend
 │   ├── src/app/
+│   │   ├── auth/
 │   │   ├── components/
-│   │   ├── services/
-│   │   └── guards/
+│   │   ├── guards/
+│   │   ├── interceptor/
+│   │   └── services/
 ├── backend/           # Node + Express Backend
 │   ├── controllers/
 │   ├── middleware/
 │   ├── routes/
+│   ├── .env
 │   ├── db.js
-│   └── index.js
+│   ├── server.js
 ```
 
 ## 🧰 Built Using
 
 <p>
-  <img alt="Java" src="https://img.shields.io/badge/-Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white" />
-  <img alt="MySQL" src="https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
-  <img alt="Eclipse" src="https://img.shields.io/badge/-Eclipse-2C2255?style=flat-square&logo=eclipseide&logoColor=white" />
-  <img alt="Git" src="https://img.shields.io/badge/-Git-f34f29?style=flat-square&logo=git&logoColor=white" />
-  <img alt="GitHub" src="https://img.shields.io/badge/-Github-24292e?style=flat-square&logo=github&logoColor=white" />
+  <img alt="html5" src="https://img.shields.io/badge/-HTML5-e34f26?style=flat-square&logo=html5&logoColor=white" />
+  <img alt="CSS3" src="https://img.shields.io/badge/-CSS3-264de4?style=flat-square&logo=css3&logoColor=white" />
+  <img alt="Bootstrap" src="https://img.shields.io/badge/-Bootstrap-59287a?style=flat-square&logo=bootstrap&logoColor=white" />
+  <img alt="Angular" src="https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white" />
+  <img alt="Node.JS" src="https://img.shields.io/badge/node.js-339933?style=flat-square&logo=Node.js&logoColor=white" />
+  <img alt="Express" src="https://img.shields.io/badge/express.js-000000?style=flat-square&logo=express&logoColor=white" />
+  <img alt="Postman" src="https://img.shields.io/badge/-Postman-fb7505?style=flat-square&logo=postman&logoColor=white" />
+  <img alt="Visual Studio Code" src="https://img.shields.io/badge/-Visual%20Studio%20Code-0078d7?style=flat-square&logo=visualstudiocode&logoColor=white" />
+  <img alt="git" src="https://img.shields.io/badge/-Git-f34f29?style=flat-square&logo=git&logoColor=white" />
+  <img alt="Github" src="https://img.shields.io/badge/-Github-14232c?style=flat-square&logo=github&logoColor=white" />
 </p>
 
 ## ✍️ Authors
