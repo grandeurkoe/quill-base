@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: PostFormComponent, canActivate: [authGuard], data: { title: 'Edit Post' } },
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
   { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
+  { path: 'edit-profile', component: RegisterComponent, data: { title: 'Edit Profile' } },
   { path: 'my-posts', component: MyPostComponent, data: { title: 'My Posts' } },
   { path: 'profile', component: ProfileComponent, data: { title: 'My Profile' } },
   { path: '**', redirectTo: '' }

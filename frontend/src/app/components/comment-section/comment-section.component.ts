@@ -8,15 +8,15 @@ import { CommentService, Comment } from 'src/app/services/comment.service';
   templateUrl: './comment-section.component.html',
   styleUrls: ['./comment-section.component.css']
 })
-export class CommentSectionComponent implements OnInit{
-  @Input() postId!: number; 
+export class CommentSectionComponent implements OnInit {
+  @Input() postId!: number;
 
   comments: Comment[] = [];
   commentForm: FormGroup;
   loading = false;
   error = '';
   isLoggedIn = false;
-  currentUser = '';
+  currentUsername = '';
 
   constructor(
     private fb: FormBuilder,
@@ -30,11 +30,11 @@ export class CommentSectionComponent implements OnInit{
 
   ngOnInit(): void {
     this.isLoggedIn = this.auth.isLoggedIn();
-    this.currentUser = this.auth.getUser()?.username || '';
+    this.currentUsername = this.auth.getUser()?.['username'] || '';
     this.fetchComments();
   }
 
-  fetchComments() {
+  fetchComments(): void {
     this.loading = true;
     this.commentService.getComments(this.postId).subscribe({
       next: (data) => {
@@ -48,9 +48,11 @@ export class CommentSectionComponent implements OnInit{
     });
   }
 
-  submitComment() {
+  submitComment(): void {
     if (this.commentForm.invalid) return;
-    const content = this.commentForm.value.content;
+
+    const content = this.commentForm.value.content.trim();
+    if (!content) return;
 
     this.commentService.addComment(this.postId, { content }).subscribe({
       next: () => {
@@ -61,10 +63,16 @@ export class CommentSectionComponent implements OnInit{
     });
   }
 
-  deleteComment(id: number) {
+  deleteComment(id: number): void {
+    if (!confirm('Are you sure you want to delete this comment?')) return;
+
     this.commentService.deleteComment(id).subscribe({
-      next: () =>  this.fetchComments(),
+      next: () => this.fetchComments(),
       error: () => (this.error = 'Failed to delete comment')
     });
+  }
+
+  canDelete(comment: Comment): boolean {
+    return comment.author === this.currentUsername;
   }
 }

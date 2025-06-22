@@ -16,15 +16,15 @@
 
     <p class="post-content">{{ post.content }}</p>
 
-    <div class="mt-4 d-flex gap-2" *ngIf="post.author === auth.getUser()?.username">
-      <a [routerLink]="['/edit', post?.id]" class="btn btn-outline-primary btn-sm">
-        📝 Edit
-      </a>
-      <button class="btn btn-outline-danger btn-sm" (click)="onDelete()">
-        🗑️ Delete
-      </button>
-    </div>
-  </div>
+<div class="mt-4 d-flex gap-2" *ngIf="canEditOrDelete()">
+  <a [routerLink]="['/edit', post?.id]" class="btn btn-outline-primary btn-sm">
+    📝 Edit
+  </a>
+  <button class="btn btn-outline-danger btn-sm" (click)="onDelete()">
+    🗑️ Delete
+  </button>
+</div>
+
 
   <div class="mt-5">
     <ng-container *ngIf="post?.id as postId">

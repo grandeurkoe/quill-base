@@ -1,8 +1,10 @@
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
   <div class="card shadow-sm p-4 register-card w-100" style="max-width: 450px;">
-    <h3 class="mb-4 text-center fw-bold">📝 Create Your Account</h3>
+    <h3 class="mb-4 text-center fw-bold">
+      {{ isEditMode ? '👤 Update Your Profile' : '📝 Create Your Account' }}
+    </h3>
 
-    <form #regForm="ngForm" (ngSubmit)="register()">
+    <form #regForm="ngForm" (ngSubmit)="submit()">
       <div class="form-floating mb-3">
         <input type="text" id="username" class="form-control" name="username" [(ngModel)]="username"
                required placeholder="Username" #u="ngModel">
@@ -19,7 +21,7 @@
 
       <div class="form-floating mb-3">
         <input type="password" id="password" class="form-control" name="password" [(ngModel)]="password"
-               required minlength="6" placeholder="••••••••" #p="ngModel">
+               [required]="!isEditMode" minlength="6" placeholder="••••••••" #p="ngModel">
         <label for="password">Password</label>
         <div class="text-danger small mt-1" *ngIf="p.invalid && p.touched">
           Password must be at least 6 characters
@@ -28,21 +30,23 @@
 
       <div class="form-floating mb-3">
         <input type="password" id="confirmPassword" class="form-control" name="confirmPassword"
-               [(ngModel)]="confirmPassword" required placeholder="••••••••" #cp="ngModel">
+               [(ngModel)]="confirmPassword" [required]="!isEditMode" placeholder="••••••••" #cp="ngModel">
         <label for="confirmPassword">Confirm Password</label>
         <div class="text-danger small mt-1" *ngIf="cp.touched && confirmPassword !== password">
           Passwords do not match
         </div>
       </div>
 
-      <button class="btn btn-primary w-100" [disabled]="regForm.invalid || confirmPassword !== password" type="submit">
-        Register
+      <button class="btn btn-primary w-100"
+              [disabled]="regForm.invalid || (!isEditMode && confirmPassword !== password)"
+              type="submit">
+        {{ isEditMode ? 'Update Profile' : 'Register' }}
       </button>
 
       <div class="alert alert-success text-center mt-3 py-2" *ngIf="success">{{ success }}</div>
       <div class="alert alert-danger text-center mt-3 py-2" *ngIf="error">{{ error }}</div>
 
-      <div class="mt-3 text-center">
+      <div class="mt-3 text-center" *ngIf="!isEditMode">
         <a routerLink="/login" class="text-decoration-none small">Already have an account? Login</a>
       </div>
     </form>

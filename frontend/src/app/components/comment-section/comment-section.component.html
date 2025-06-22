@@ -8,14 +8,14 @@
     No comments yet. Be the first to comment!
   </div>
 
-  <div *ngFor="let comment of comments" class="comment-box p-3 mb-3">
+  <div *ngFor="let comment of comments" class="comment-box p-3 mb-3 border rounded shadow-sm">
     <p class="mb-1 text-dark">{{ comment.content }}</p>
-    <div class="d-flex justify-content-between align-items-center">
-      <small class="text-muted">👤 {{ comment.author }} • {{ comment.created_at | date: 'medium' }}</small>
+    <div class="d-flex justify-content-between align-items-center small text-muted">
+      <span>👤 {{ comment.author }} • {{ comment.created_at | date: 'medium' }}</span>
       <button
-        *ngIf="comment.author === currentUser"
+        *ngIf="canDelete(comment)"
         (click)="deleteComment(comment.id)"
-        class="btn btn-sm btn-link text-danger"
+        class="btn btn-sm btn-link text-danger p-0"
         title="Delete comment"
       >
         🗑️ Delete
@@ -27,7 +27,7 @@
     <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
       <div class="mb-3">
         <textarea
-          class="form-control comment-input"
+          class="form-control"
           formControlName="content"
           rows="3"
           placeholder="Add your comment here..."

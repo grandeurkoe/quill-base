@@ -60,7 +60,7 @@ export class AuthService {
     }
   }
 
-  private loadUserFromToken(): void {
+  public loadUserFromToken(): void {
     const token = this.getToken();
     if (token) this.decodeToken(token);
   }

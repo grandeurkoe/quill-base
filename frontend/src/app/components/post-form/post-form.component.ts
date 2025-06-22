@@ -49,22 +49,22 @@ export class PostFormComponent implements OnInit{
 
     const formData = this.postForm.value;
 
-    if(this.isEditMode && this.postId) {
+    if (this.isEditMode && this.postId) {
       this.postService.updatePost(this.postId, formData).subscribe({
         next: () => this.router.navigate(['/post', this.postId]),
         error: () => this.errorMessage = 'Failed to update post.'
       });
+    } else {
+      this.postService.createPost(formData).subscribe({
+        next: (res) => {
+          this.successMessage = 'Post created successfully!';
+          this.postForm.reset();
+        },
+        error: (err) => {
+          this.errorMessage = 'Failed to create post.';
+          console.error(err);
+        }
+      });
     }
-
-    this.postService.createPost(formData).subscribe({
-      next: (res) => {
-        this.successMessage = 'Post created successfully!';
-        this.postForm.reset();
-      },
-      error: (err) => {
-        this.errorMessage = 'Failed to create post.';
-        console.error(err);
-      }
-    });
   }
 }

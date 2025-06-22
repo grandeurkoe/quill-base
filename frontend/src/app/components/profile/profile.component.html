@@ -1,10 +1,8 @@
 <div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 75vh;" *ngIf="!loading">
-  <div class="card shadow-sm p-4 profile-card w-100">
+  <div class="card shadow-sm p-4 profile-card w-100" style="max-width: 500px;">
     <div class="text-center mb-3">
-      <div class="avatar-placeholder mx-auto mb-2">
-        <span class="avatar-initials">
-          {{ user?.['username']?.charAt(0) | uppercase }}
-        </span>
+      <div class="avatar-placeholder mx-auto mb-2 rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; font-size: 24px;">
+        {{ user?.['username']?.charAt(0) | uppercase }}
       </div>
       <h4 class="mb-0">{{ user?.['username'] }}</h4>
       <small class="text-muted">{{ user?.['email'] }}</small>
@@ -20,9 +18,9 @@
       <a routerLink="/my-posts" class="btn btn-primary px-4 fw-semibold shadow-sm">
         📚 View Posts
       </a>
-      <button class="btn btn-outline-secondary px-4 fw-semibold shadow-sm" disabled>
+      <a routerLink="/edit-profile" class="btn btn-outline-secondary px-4 fw-semibold shadow-sm">
         ✏️ Edit Profile
-      </button>
+      </a>
     </div>
 
     <div class="text-center text-muted small mt-4">

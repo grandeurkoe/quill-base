@@ -26,3 +26,45 @@ exports.login = async (req, res) => {
     res.json({ token });
 };
 
+exports.updateProfile = async (req, res) => {
+  const { username, email, password } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const fields = [];
+    const values = [];
+
+    if (username) {
+      fields.push('username = ?');
+      values.push(username);
+    }
+    if (email) {
+      fields.push('email = ?');
+      values.push(email);
+    }
+    if (password) {
+      const hashed = await bcrypt.hash(password, 10);
+      fields.push('password = ?');
+      values.push(hashed);
+    }
+
+    if (fields.length === 0) {
+      return res.status(400).json({ message: 'Nothing to update' });
+    }
+
+    values.push(userId);
+    await db.execute(`UPDATE users SET ${fields.join(', ')} WHERE id = ?`, values);
+
+    const token = jwt.sign(
+      { id: userId, username, email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.json({ message: 'Profile updated successfully', token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Update failed' });
+  }
+};
+
