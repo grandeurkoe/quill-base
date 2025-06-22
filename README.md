@@ -86,6 +86,18 @@ App will be available at: http://localhost:4200
 
 ## 📸 Screenshots
 
+**(/home)**
+
+<div align="center">
+  <img src="screenshots/quillbase-home.png" alt="QuillBase - Home" />
+</div>
+
+**(/post-details)**
+
+<div align="center">
+  <img src="screenshots/quillbase-post.png" alt="QuillBase - Post Details " />
+</div>
+
 ## 🧩 Folder Structure Overview
 
 ```bash
