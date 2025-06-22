@@ -7,15 +7,17 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { authGuard } from './guards/auth.guard';
 import { MyPostComponent } from './components/my-post/my-post.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: PostListComponent },
-  { path: 'post/:id', component: PostDetailComponent },
-  { path: 'new', component: PostFormComponent, canActivate: [authGuard] },
-  { path: 'edit/:id', component: PostFormComponent, canActivate: [authGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'my-posts', component: MyPostComponent },
+  { path: '', component: PostListComponent, data: { title: 'Home' } },
+  { path: 'post/:id', component: PostDetailComponent, data: { title: 'Post Details' } },
+  { path: 'new', component: PostFormComponent, canActivate: [authGuard], data: { title: 'New Post' } },
+  { path: 'edit/:id', component: PostFormComponent, canActivate: [authGuard], data: { title: 'Edit Post' } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
+  { path: 'my-posts', component: MyPostComponent, data: { title: 'My Posts' } },
+  { path: 'profile', component: ProfileComponent, data: { title: 'My Profile' } },
   { path: '**', redirectTo: '' }
 ];
 

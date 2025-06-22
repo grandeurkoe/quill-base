@@ -15,6 +15,10 @@
         </li>
 
         <li class="nav-item" *ngIf="auth.isLoggedIn()">
+          <a class="nav-link" routerLink="/profile">My Profile</a>
+        </li>
+
+        <li class="nav-item" *ngIf="auth.isLoggedIn()">
           <a class="nav-link" routerLink="/my-posts">My Posts</a>
         </li>
 

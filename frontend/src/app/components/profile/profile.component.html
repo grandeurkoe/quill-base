@@ -1,0 +1,36 @@
+<div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 75vh;" *ngIf="!loading">
+  <div class="card shadow-sm p-4 profile-card w-100">
+    <div class="text-center mb-3">
+      <div class="avatar-placeholder mx-auto mb-2">
+        <span class="avatar-initials">
+          {{ user?.['username']?.charAt(0) | uppercase }}
+        </span>
+      </div>
+      <h4 class="mb-0">{{ user?.['username'] }}</h4>
+      <small class="text-muted">{{ user?.['email'] }}</small>
+    </div>
+
+    <ul class="list-group list-group-flush mb-3 mt-3">
+      <li class="list-group-item">
+        <strong>Total Posts:</strong> {{ totalPosts }}
+      </li>
+    </ul>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-center gap-2 mt-3">
+      <a routerLink="/my-posts" class="btn btn-primary px-4 fw-semibold shadow-sm">
+        📚 View Posts
+      </a>
+      <button class="btn btn-outline-secondary px-4 fw-semibold shadow-sm" disabled>
+        ✏️ Edit Profile
+      </button>
+    </div>
+
+    <div class="text-center text-muted small mt-4">
+      Keep writing, keep growing ✨
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="loading">
+  <p class="text-muted">Loading your profile...</p>
+</div>

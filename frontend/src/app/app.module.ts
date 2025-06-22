@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from 'src/app/interceptor/token.interceptor';
 import { CommentSectionComponent } from './components/comment-section/comment-section.component';
 import { MyPostComponent } from './components/my-post/my-post.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MyPostComponent } from './components/my-post/my-post.component';
     LoginComponent,
     RegisterComponent,
     CommentSectionComponent,
-    MyPostComponent
+    MyPostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
