@@ -30,3 +30,7 @@
   font-size: 0.85rem;
   color: #495057;
 }
+
+.card-body.flex-grow-1 {
+  min-height: 160px; /* Optional: prevents very short cards */
+}
