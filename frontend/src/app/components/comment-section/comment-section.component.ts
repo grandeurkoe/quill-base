@@ -66,11 +66,12 @@ export class CommentSectionComponent implements OnInit {
   deleteComment(id: number): void {
     if (!confirm('Are you sure you want to delete this comment?')) return;
 
-    this.commentService.deleteComment(id).subscribe({
+    this.commentService.deleteComment(this.postId, id).subscribe({
       next: () => this.fetchComments(),
       error: () => (this.error = 'Failed to delete comment')
     });
   }
+
 
   canDelete(comment: Comment): boolean {
     return comment.author === this.currentUsername;

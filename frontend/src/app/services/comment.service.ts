@@ -32,11 +32,12 @@ export class CommentService {
   }
 
   // Delete a specific comment (requires token)
-  deleteComment(commentId: number): Observable<any> {
-    return this.http.delete(`${this.commentApiUrl}/${commentId}`, {
+  deleteComment(postId: number, commentId: number): Observable<any> {
+    return this.http.delete(`${this.postApiUrl}/${postId}/comments/${commentId}`, {
       headers: this.getAuthHeaders()
     });
   }
+
 
   // Utility to generate Authorization header
   private getAuthHeaders(): HttpHeaders {

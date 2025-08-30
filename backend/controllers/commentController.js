@@ -46,7 +46,7 @@ exports.getCommentsByPost = async (req, res) => {
 
 // Delete a comment if user owns it
 exports.deleteComment = async (req, res) => {
-  const commentId = req.params.id;
+  const commentId = req.params.commentId;
   const userId = req.user.id;
 
   try {
